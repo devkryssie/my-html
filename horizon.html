@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Horizon — Luxury Travel Experiences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a84c;--gold-light:#e8c97a;--gold-pale:#fdf6e3;
+  --dark:#0d0d0d;--dark2:#1a1a1a;--dark3:#242424;
+  --white:#ffffff;--off:#f9f6f0;
+  --text:#1c1c1c;--muted:#6b6560;--border:rgba(201,168,76,0.18);
+  --ff-head:'Playfair Display',Georgia,serif;
+  --ff-body:'Outfit',system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--off);color:var(--text);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:0 56px;
+  background:rgba(13,13,13,.88);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(201,168,76,.12)}
+.nav-i{max-width:1280px;margin:0 auto;height:70px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--ff-head);font-size:1.6rem;font-weight:400;color:var(--white);text-decoration:none;letter-spacing:.06em}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{text-decoration:none;color:rgba(255,255,255,.65);font-size:.82rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;transition:color .25s}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{padding:10px 26px;border-radius:4px;background:var(--gold);color:var(--dark);
+  font-family:var(--ff-body);font-size:.78rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;transition:background .25s,transform .25s}
+.nav-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:#0a0a0a}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,10,10,.85) 0%,rgba(10,10,10,.4) 55%,rgba(10,10,10,.2) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 56px;padding-top:70px}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;
+  font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  animation:fadeUp .9s var(--ease) both}
+.hero-tag::before{content:'';display:block;width:36px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--ff-head);font-size:clamp(3.2rem,7vw,7rem);font-weight:400;
+  line-height:1.05;letter-spacing:-.01em;color:var(--white);max-width:700px;
+  margin-bottom:28px;animation:fadeUp .9s var(--ease) .12s both}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.8;max-width:460px;
+  font-weight:300;margin-bottom:48px;animation:fadeUp .9s var(--ease) .24s both}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .9s var(--ease) .36s both}
+.btn-gold{padding:16px 38px;border-radius:4px;background:var(--gold);color:var(--dark);
+  font-family:var(--ff-body);font-size:.85rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;transition:all .3s;
+  box-shadow:0 8px 32px rgba(201,168,76,.3)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 14px 40px rgba(201,168,76,.4)}
+.btn-outline{padding:16px 38px;border-radius:4px;border:1.5px solid rgba(255,255,255,.35);
+  color:var(--white);font-family:var(--ff-body);font-size:.85rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{position:absolute;bottom:48px;right:56px;display:flex;gap:48px;z-index:2;
+  animation:fadeUp .9s var(--ease) .5s both}
+.stat{text-align:right}
+.stat-num{font-family:var(--ff-head);font-size:2.4rem;font-weight:400;color:var(--white);line-height:1}
+.stat-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
+.hero-scroll{position:absolute;bottom:48px;left:56px;display:flex;align-items:center;gap:12px;
+  color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;z-index:2;
+  animation:fadeUp .9s var(--ease) .6s both}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.4));
+  animation:scrollGrow 2s ease-in-out infinite}
+
+/* ── SECTION COMMON ── */
+.section{padding:110px 56px;max-width:1280px;margin:0 auto}
+.full-section{padding:110px 56px}
+.s-eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px}
+.s-title{font-family:var(--ff-head);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:400;
+  letter-spacing:-.01em;line-height:1.15;color:var(--text);margin-bottom:16px}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-sub{font-size:.98rem;color:var(--muted);line-height:1.85;max-width:520px;font-weight:300}
+
+/* ── DESTINATIONS ── */
+.destinations-bg{background:var(--dark);overflow:hidden}
+.destinations-inner{max-width:1280px;margin:0 auto;padding:110px 56px}
+.destinations-inner .s-title{color:var(--white)}
+.destinations-inner .s-sub{color:rgba(255,255,255,.5)}
+.dest-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:340px 240px;gap:16px;margin-top:52px}
+.dest-card{border-radius:14px;overflow:hidden;position:relative;cursor:pointer}
+.dest-card.large{grid-row:span 2}
+.dest-card .card-img{width:100%;height:100%;transition:transform .7s var(--ease)}
+.dest-card:hover .card-img{transform:scale(1.06)}
+.dest-card .card-body{position:absolute;inset:0;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:28px;
+  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.1) 55%,transparent 100%)}
+.dest-card .region{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px}
+.dest-card .dest-name{font-family:var(--ff-head);font-size:1.5rem;font-weight:400;color:var(--white);
+  margin-bottom:8px;line-height:1.2}
+.dest-card.large .dest-name{font-size:2.2rem}
+.dest-card .dest-meta{font-size:.78rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:8px}
+.dest-card .dest-meta span{color:var(--gold)}
+.dest-card .explore-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  padding:9px 20px;border-radius:4px;border:1px solid rgba(255,255,255,.3);
+  color:var(--white);font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;transition:all .25s;opacity:0;transform:translateY(8px)}
+.dest-card:hover .explore-btn{opacity:1;transform:translateY(0)}
+
+/* ── EXPERIENCES ── */
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px}
+.exp-card{background:var(--white);border-radius:16px;overflow:hidden;
+  border:1px solid rgba(0,0,0,.07);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.exp-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.12)}
+.exp-img{width:100%;height:220px;overflow:hidden}
+.exp-img svg{display:block;transition:transform .6s var(--ease)}
+.exp-card:hover .exp-img svg{transform:scale(1.05)}
+.exp-body{padding:28px}
+.exp-cat{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.exp-card h3{font-family:var(--ff-head);font-size:1.3rem;font-weight:400;color:var(--text);margin-bottom:10px}
+.exp-card p{font-size:.87rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:20px}
+.exp-footer{display:flex;align-items:center;justify-content:space-between}
+.price-from{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.price-val{font-family:var(--ff-head);font-size:1.4rem;font-weight:400;color:var(--text)}
+.price-val span{font-family:var(--ff-body);font-size:.8rem;color:var(--muted)}
+.book-link{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:5px;transition:gap .25s}
+.book-link:hover{gap:9px}
+
+/* ── PHILOSOPHY (split) ── */
+.philosophy{background:var(--white)}
+.phil-inner{max-width:1280px;margin:0 auto;padding:110px 56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.phil-visual{position:relative;height:520px}
+.phil-img-main{position:absolute;top:0;right:0;width:75%;height:420px;border-radius:16px;overflow:hidden}
+.phil-img-accent{position:absolute;bottom:0;left:0;width:52%;height:280px;border-radius:14px;overflow:hidden;
+  border:6px solid var(--white);box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.phil-tag-badge{position:absolute;top:32px;left:32px;z-index:3;
+  background:var(--gold);color:var(--dark);padding:10px 20px;border-radius:4px;
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.phil-stat-badge{position:absolute;bottom:56px;right:0;z-index:3;
+  background:var(--dark);color:var(--white);padding:20px 24px;border-radius:10px;text-align:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.phil-stat-badge .big-num{font-family:var(--ff-head);font-size:2.4rem;font-weight:400;color:var(--gold)}
+.phil-stat-badge .sm-label{font-size:.68rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.phil-text .quote-bar{width:52px;height:3px;background:var(--gold);margin:28px 0}
+.phil-text blockquote{font-family:var(--ff-head);font-size:1.3rem;font-style:italic;
+  font-weight:400;line-height:1.65;color:var(--text);margin-bottom:28px}
+.phil-text p{font-size:.93rem;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:16px}
+
+/* ── TESTIMONIALS ── */
+.testimonials-bg{background:var(--gold-pale)}
+.testi-inner{max-width:1280px;margin:0 auto;padding:110px 56px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}
+.testi-card{background:var(--white);border-radius:16px;padding:36px;
+  border:1px solid rgba(201,168,76,.15);transition:box-shadow .3s}
+.testi-card:hover{box-shadow:0 16px 48px rgba(201,168,76,.15)}
+.stars{display:flex;gap:3px;margin-bottom:18px}
+.star{width:14px;height:14px;color:var(--gold)}
+.testi-card blockquote{font-family:var(--ff-head);font-size:1.05rem;font-style:italic;
+  font-weight:400;line-height:1.7;color:var(--text);margin-bottom:24px}
+.testi-author{display:flex;align-items:center;gap:14px}
+.author-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-trip{font-size:.77rem;color:var(--muted)}
+
+/* ── NEWSLETTER ── */
+.newsletter-wrap{background:var(--dark);padding:90px 56px}
+.newsletter-inner{max-width:680px;margin:0 auto;text-align:center}
+.newsletter-inner .s-eyebrow{justify-content:center;display:block}
+.newsletter-inner .s-title{color:var(--white)}
+.newsletter-inner .s-sub{color:rgba(255,255,255,.5);margin:0 auto 40px}
+.form-row{display:flex;gap:12px;max-width:520px;margin:0 auto}
+.nl-input{flex:1;padding:15px 22px;border-radius:4px;border:1.5px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);color:var(--white);font-family:var(--ff-body);
+  font-size:.9rem;outline:none;transition:border-color .25s}
+.nl-input::placeholder{color:rgba(255,255,255,.35)}
+.nl-input:focus{border-color:var(--gold)}
+.nl-btn{padding:15px 30px;border-radius:4px;background:var(--gold);border:none;
+  color:var(--dark);font-family:var(--ff-body);font-size:.85rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;white-space:nowrap}
+.nl-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+footer{background:var(--dark2);padding:72px 56px 40px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;
+  border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:36px}
+.footer-logo{font-family:var(--ff-head);font-size:1.9rem;font-weight:400;color:var(--white);
+  display:block;margin-bottom:16px;text-decoration:none}
+.footer-logo span{color:var(--gold)}
+.footer-desc{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.8;font-weight:300;max-width:260px;margin-bottom:28px}
+.footer-socials{display:flex;gap:10px}
+.soc-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;transition:background .25s;text-decoration:none}
+.soc-btn:hover{background:rgba(201,168,76,.3)}
+.soc-btn svg{width:15px;height:15px}
+.footer-col h5{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:22px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{text-decoration:none;color:rgba(255,255,255,.45);font-size:.85rem;
+  font-weight:300;transition:color .2s}
+.footer-col ul a:hover{color:var(--gold)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:.77rem;color:rgba(255,255,255,.3)}
+.footer-bottom a{color:rgba(255,255,255,.3);text-decoration:none}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}
+.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollGrow{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+@media(max-width:1024px){
+  nav,nav .nav-i,.hero-content,.section,.destinations-inner,.phil-inner,.testi-inner,.newsletter-wrap,.footer-inner{padding-left:28px;padding-right:28px}
+  .dest-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .dest-card.large{grid-row:span 1}
+  .exp-grid,.testi-grid{grid-template-columns:1fr 1fr}
+  .phil-inner,.footer-top{grid-template-columns:1fr}
+  .phil-visual{height:360px;margin-bottom:40px}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .dest-grid,.exp-grid,.testi-grid{grid-template-columns:1fr}
+  .hero-stats{display:none}
+  .form-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-i">
+    <a href="#" class="logo">Hori<span>zon</span></a>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#philosophy">Our Story</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <a href="#newsletter" class="nav-btn">Plan a Trip</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Hero background: sunset over ocean panorama -->
+  <svg class="hero-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sky layers -->
+    <rect width="1440" height="900" fill="#0c1a2e"/>
+    <ellipse cx="720" cy="520" rx="900" ry="500" fill="#1a2d4a" opacity=".8"/>
+    <!-- Deep sunset glow -->
+    <ellipse cx="680" cy="480" rx="520" ry="320" fill="#2d1c08" opacity=".9"/>
+    <ellipse cx="680" cy="500" rx="380" ry="220" fill="#5c2d0a" opacity=".8"/>
+    <ellipse cx="660" cy="510" rx="260" ry="150" fill="#8b420f" opacity=".85"/>
+    <ellipse cx="650" cy="520" rx="160" ry="100" fill="#c4620e" opacity=".7"/>
+    <ellipse cx="640" cy="530" rx="90" ry="60" fill="#e88218" opacity=".6"/>
+    <!-- Sun -->
+    <circle cx="630" cy="540" r="48" fill="#f5a623"/>
+    <circle cx="630" cy="540" r="36" fill="#fbd26a"/>
+    <circle cx="630" cy="540" r="22" fill="#fff5d4"/>
+    <!-- Horizon glow -->
+    <rect x="0" y="560" width="1440" height="8" fill="#c4620e" opacity=".3"/>
+    <rect x="0" y="568" width="1440" height="4" fill="#f5a623" opacity=".2"/>
+    <!-- Ocean -->
+    <rect x="0" y="560" width="1440" height="340" fill="#0d2a4a"/>
+    <!-- Ocean shimmer bands -->
+    <ellipse cx="720" cy="640" rx="900" ry="80" fill="#1a3d5c" opacity=".7"/>
+    <ellipse cx="640" cy="600" rx="300" ry="30" fill="#c4620e" opacity=".25"/>
+    <ellipse cx="640" cy="610" rx="200" ry="18" fill="#f5a623" opacity=".18"/>
+    <ellipse cx="640" cy="620" rx="120" ry="10" fill="#fbd26a" opacity=".12"/>
+    <!-- Ocean waves -->
+    <path d="M0 590 Q80 583,160 590 Q240 597,320 590 Q400 583,480 590 Q560 597,640 590 Q720 583,800 590 Q880 597,960 590 Q1040 583,1120 590 Q1200 597,1280 590 Q1360 583,1440 590 L1440 610 L0 610Z" fill="#0f3356" opacity=".8"/>
+    <path d="M0 610 Q90 603,180 610 Q270 617,360 610 Q450 603,540 610 Q630 617,720 610 Q810 603,900 610 Q990 617,1080 610 Q1170 603,1260 610 Q1350 617,1440 610 L1440 635 L0 635Z" fill="#0d2a4a" opacity=".9"/>
+    <!-- Distant island silhouettes -->
+    <path d="M950 555 Q980 520,1020 515 Q1060 510,1100 525 Q1130 535,1140 555Z" fill="#0a1e30" opacity=".9"/>
+    <path d="M1100 558 Q1120 540,1145 537 Q1170 534,1190 548 Q1205 558,1210 562Z" fill="#081828" opacity=".85"/>
+    <path d="M280 558 Q310 530,355 526 Q400 522,430 538 Q452 550,458 562Z" fill="#0a1e30" opacity=".85"/>
+    <!-- Clouds -->
+    <ellipse cx="200" cy="300" rx="140" ry="42" fill="#1d3550" opacity=".6"/>
+    <ellipse cx="160" cy="295" rx="90" ry="30" fill="#1d3550" opacity=".5"/>
+    <ellipse cx="240" cy="298" rx="80" ry="28" fill="#1d3550" opacity=".5"/>
+    <ellipse cx="1150" cy="220" rx="180" ry="48" fill="#1a3050" opacity=".5"/>
+    <ellipse cx="1100" cy="215" rx="110" ry="34" fill="#1a3050" opacity=".45"/>
+    <ellipse cx="1220" cy="218" rx="90" ry="30" fill="#1a3050" opacity=".45"/>
+    <ellipse cx="820" cy="160" rx="120" ry="35" fill="#162840" opacity=".45"/>
+    <!-- Stars -->
+    <circle cx="100" cy="80" r="1.2" fill="white" opacity=".7"/>
+    <circle cx="250" cy="50" r="1" fill="white" opacity=".6"/>
+    <circle cx="450" cy="30" r="1.4" fill="white" opacity=".8"/>
+    <circle cx="750" cy="60" r="1" fill="white" opacity=".5"/>
+    <circle cx="1000" cy="40" r="1.3" fill="white" opacity=".7"/>
+    <circle cx="1200" cy="90" r="1" fill="white" opacity=".6"/>
+    <circle cx="1350" cy="55" r="1.5" fill="white" opacity=".75"/>
+    <circle cx="380" cy="130" r="1" fill="white" opacity=".4"/>
+    <circle cx="1080" cy="130" r="1.2" fill="white" opacity=".5"/>
+    <!-- Foreground: dark beach/cliff silhouette -->
+    <path d="M1100 900 L1100 680 Q1140 650,1180 640 Q1240 620,1290 635 Q1340 650,1370 680 L1440 700 L1440 900Z" fill="#05111e"/>
+    <path d="M1200 900 L1200 720 Q1240 700,1280 695 Q1310 692,1330 705 L1440 750 L1440 900Z" fill="#030d18"/>
+    <!-- Foreground dark water edge -->
+    <path d="M0 760 Q360 740,720 760 Q1080 780,1440 760 L1440 900 L0 900Z" fill="#040e1c"/>
+  </svg>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Extraordinary Journeys Await</p>
+    <h1>Discover the world's<br/><em>hidden wonders</em></h1>
+    <p class="hero-sub">Curated luxury travel experiences crafted for the discerning explorer. Where every destination tells a story only you can live.</p>
+    <div class="hero-actions">
+      <a href="#destinations" class="btn-gold">Explore Destinations</a>
+      <a href="#experiences" class="btn-outline">View Experiences</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll to explore</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">180+</div><div class="stat-label">Destinations</div></div>
+    <div class="stat"><div class="stat-num">14K+</div><div class="stat-label">Happy Travellers</div></div>
+    <div class="stat"><div class="stat-num">28</div><div class="stat-label">Years of Excellence</div></div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<div class="destinations-bg" id="destinations">
+<div class="destinations-inner reveal">
+  <p class="s-eyebrow">Where Will You Go</p>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
+    <h2 class="s-title" style="color:var(--white)">Featured <em>destinations</em></h2>
+    <a href="#" class="btn-outline" style="margin-bottom:4px">View All →</a>
+  </div>
+  <div class="dest-grid">
+
+    <!-- Large card: Amalfi Coast -->
+    <div class="dest-card large reveal">
+      <svg class="card-img" viewBox="0 0 480 580" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky -->
+        <rect width="480" height="580" fill="#4a90d9"/>
+        <rect width="480" height="200" fill="#2d6fb5"/>
+        <!-- Sky gradient blobs -->
+        <ellipse cx="240" cy="100" rx="300" ry="120" fill="#5ba3e8" opacity=".5"/>
+        <ellipse cx="80" cy="60" rx="150" ry="60" fill="#6bb0f0" opacity=".4"/>
+        <!-- Clouds -->
+        <ellipse cx="340" cy="70" rx="90" ry="28" fill="white" opacity=".85"/>
+        <ellipse cx="300" cy="68" rx="55" ry="20" fill="white" opacity=".8"/>
+        <ellipse cx="390" cy="72" rx="48" ry="18" fill="white" opacity=".8"/>
+        <ellipse cx="80" cy="100" rx="70" ry="22" fill="white" opacity=".7"/>
+        <ellipse cx="50" cy="98" rx="42" ry="16" fill="white" opacity=".65"/>
+        <!-- Water -->
+        <rect x="0" y="340" width="480" height="240" fill="#1a6eb5"/>
+        <ellipse cx="240" cy="350" rx="350" ry="40" fill="#2480cc" opacity=".6"/>
+        <!-- Cliffs + terraces -->
+        <path d="M0 340 Q60 280,120 260 Q170 245,200 255 Q240 268,250 280 Q260 292,280 285 Q320 272,360 260 Q400 248,440 258 Q460 264,480 275 L480 340Z" fill="#8b6a3a"/>
+        <path d="M0 340 Q40 310,90 300 Q140 290,170 298 Q200 306,220 300 Q255 292,290 290 Q330 288,370 295 Q410 302,450 295 L480 295 L480 340Z" fill="#a07848"/>
+        <!-- Colorful houses on cliffs -->
+        <!-- Row 1 houses -->
+        <rect x="30" y="295" width="22" height="28" rx="2" fill="#e84040"/>
+        <polygon points="30,295 52,295 41,280" fill="#c03030"/>
+        <rect x="60" y="288" width="20" height="30" rx="2" fill="#f0c040"/>
+        <polygon points="60,288 80,288 70,273" fill="#d4a830"/>
+        <rect x="88" y="292" width="18" height="26" rx="2" fill="#40a0e8"/>
+        <polygon points="88,292 106,292 97,278" fill="#3088cc"/>
+        <rect x="114" y="285" width="20" height="30" rx="2" fill="#f08050"/>
+        <polygon points="114,285 134,285 124,270" fill="#d06840"/>
+        <rect x="142" y="290" width="18" height="28" rx="2" fill="#60c060"/>
+        <rect x="168" y="287" width="22" height="30" rx="2" fill="#e84040"/>
+        <rect x="198" y="282" width="20" height="28" rx="2" fill="#f0c040"/>
+        <rect x="226" y="279" width="18" height="26" rx="2" fill="#e080c0"/>
+        <rect x="252" y="278" width="22" height="28" rx="2" fill="#40a0e8"/>
+        <rect x="282" y="276" width="20" height="30" rx="2" fill="#f08050"/>
+        <rect x="310" y="272" width="18" height="28" rx="2" fill="#60c060"/>
+        <rect x="336" y="268" width="22" height="30" rx="2" fill="#e84040"/>
+        <rect x="366" y="265" width="20" height="28" rx="2" fill="#f0c040"/>
+        <rect x="394" y="262" width="18" height="26" rx="2" fill="#40a0e8"/>
+        <rect x="420" y="260" width="22" height="28" rx="2" fill="#f08050"/>
+        <!-- Windows -->
+        <rect x="35" y="300" width="5" height="5" fill="rgba(255,255,255,.6)"/>
+        <rect x="44" y="300" width="5" height="5" fill="rgba(255,255,255,.6)"/>
+        <rect x="64" y="295" width="5" height="5" fill="rgba(255,255,255,.6)"/>
+        <rect x="73" y="295" width="5" height="5" fill="rgba(255,255,255,.6)"/>
+        <!-- Rock face lower -->
+        <path d="M0 360 Q80 345,160 350 Q240 355,320 348 Q400 342,480 352 L480 580 L0 580Z" fill="#6b4f2a"/>
+        <path d="M0 400 Q80 390,160 395 Q240 400,320 392 Q400 385,480 395 L480 580 L0 580Z" fill="#7a5c32"/>
+        <!-- Vegetation on rocks -->
+        <ellipse cx="60" cy="375" rx="22" ry="12" fill="#3a7a3a" opacity=".8"/>
+        <ellipse cx="180" cy="368" rx="18" ry="10" fill="#3a7a3a" opacity=".75"/>
+        <ellipse cx="320" cy="372" rx="25" ry="13" fill="#3a7a3a" opacity=".8"/>
+        <ellipse cx="430" cy="378" rx="20" ry="11" fill="#3a7a3a" opacity=".7"/>
+        <!-- Boats in water -->
+        <ellipse cx="120" cy="400" rx="28" ry="8" fill="white" opacity=".9"/>
+        <rect x="112" y="394" width="16" height="6" rx="2" fill="#e04040"/>
+        <path d="M120 394 L120 380" stroke="white" stroke-width="1.5"/>
+        <path d="M120 380 L134 388" stroke="white" stroke-width="1" fill="none"/>
+        <ellipse cx="370" cy="390" rx="22" ry="7" fill="white" opacity=".85"/>
+        <rect x="362" y="385" width="14" height="5" rx="2" fill="#4080f0"/>
+        <!-- Water reflections -->
+        <path d="M0 420 Q120 415,240 420 Q360 425,480 420" stroke="rgba(255,255,255,.15)" stroke-width="1.5" fill="none"/>
+        <path d="M0 440 Q120 435,240 440 Q360 445,480 440" stroke="rgba(255,255,255,.12)" stroke-width="1" fill="none"/>
+        <!-- Path winding up cliff -->
+        <path d="M200 340 Q220 355,215 375 Q210 395,230 410" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-dasharray="5,4"/>
+      </svg>
+      <div class="card-body">
+        <div class="region">Italy · Mediterranean</div>
+        <div class="dest-name">Amalfi Coast</div>
+        <div class="dest-meta">From <span>$4,200</span> · 7 nights</div>
+        <a href="#" class="explore-btn">Explore →</a>
+      </div>
+    </div>
+
+    <!-- Kyoto -->
+    <div class="dest-card reveal d1">
+      <svg class="card-img" viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky -->
+        <rect width="380" height="340" fill="#fce8f0"/>
+        <ellipse cx="190" cy="80" rx="200" ry="90" fill="#f9d4e4" opacity=".7"/>
+        <!-- Cherry blossom trees -->
+        <!-- Tree 1 -->
+        <rect x="60" y="200" width="8" height="120" fill="#5a3520"/>
+        <path d="M64 200 Q40 180,30 155 Q40 160,64 200Z" fill="#5a3520"/>
+        <path d="M64 200 Q85 175,95 150 Q80 158,64 200Z" fill="#5a3520"/>
+        <ellipse cx="40" cy="140" rx="40" ry="35" fill="#f4a0c0" opacity=".9"/>
+        <ellipse cx="70" cy="125" rx="50" ry="40" fill="#f4b0c8" opacity=".85"/>
+        <ellipse cx="100" cy="138" rx="38" ry="32" fill="#f0a0bc" opacity=".9"/>
+        <ellipse cx="55" cy="115" rx="35" ry="28" fill="#f8c0d0" opacity=".8"/>
+        <ellipse cx="88" cy="110" rx="30" ry="26" fill="#f4a8c4" opacity=".8"/>
+        <!-- Tree 2 -->
+        <rect x="290" y="210" width="8" height="110" fill="#5a3520"/>
+        <ellipse cx="295" cy="155" rx="52" ry="42" fill="#f4a0c0" opacity=".9"/>
+        <ellipse cx="270" cy="145" rx="38" ry="30" fill="#f8b8cc" opacity=".85"/>
+        <ellipse cx="322" cy="148" rx="40" ry="32" fill="#f0a0bc" opacity=".88"/>
+        <ellipse cx="302" cy="132" rx="34" ry="26" fill="#f4b4c8" opacity=".8"/>
+        <!-- Temple pagoda -->
+        <rect x="135" y="220" width="110" height="80" fill="#c84040"/>
+        <rect x="145" y="210" width="90" height="20" fill="#a03030"/>
+        <path d="M125 210 L190 185 L255 210Z" fill="#c84040"/>
+        <path d="M130 190 L190 168 L250 190Z" fill="#a03030"/>
+        <path d="M140 172 L190 152 L240 172Z" fill="#c84040"/>
+        <path d="M148 155 L190 138 L232 155Z" fill="#a03030"/>
+        <!-- Pagoda details -->
+        <rect x="175" y="240" width="30" height="60" fill="#8b4513"/>
+        <rect x="155" y="250" width="70" height="10" fill="rgba(0,0,0,.2)"/>
+        <rect x="155" y="270" width="70" height="10" fill="rgba(0,0,0,.2)"/>
+        <rect x="165" y="230" width="16" height="16" fill="#f0a030"/>
+        <rect x="199" y="230" width="16" height="16" fill="#f0a030"/>
+        <!-- Stone path -->
+        <ellipse cx="190" cy="305" rx="60" ry="10" fill="#c8b8a0"/>
+        <ellipse cx="165" cy="310" rx="14" ry="6" fill="#b8a890"/>
+        <ellipse cx="190" cy="312" rx="12" ry="5" fill="#b8a890"/>
+        <ellipse cx="215" cy="309" rx="13" ry="5" fill="#b8a890"/>
+        <!-- Ground -->
+        <rect x="0" y="295" width="380" height="45" fill="#c8d4a0"/>
+        <rect x="0" y="310" width="380" height="30" fill="#b8c890"/>
+        <!-- Falling petals -->
+        <ellipse cx="150" cy="180" rx="5" ry="8" fill="#f4a0c0" opacity=".7" transform="rotate(-20,150,180)"/>
+        <ellipse cx="220" cy="170" rx="4" ry="7" fill="#f8b8cc" opacity=".65" transform="rotate(30,220,170)"/>
+        <ellipse cx="175" cy="155" rx="4" ry="6" fill="#f4a0c0" opacity=".6" transform="rotate(-10,175,155)"/>
+        <ellipse cx="240" cy="200" rx="3" ry="5" fill="#f0a0bc" opacity=".6" transform="rotate(40,240,200)"/>
+        <ellipse cx="130" cy="200" rx="4" ry="7" fill="#f8c0d0" opacity=".55" transform="rotate(-30,130,200)"/>
+      </svg>
+      <div class="card-body">
+        <div class="region">Japan · Asia</div>
+        <div class="dest-name">Kyoto</div>
+        <div class="dest-meta">From <span>$3,800</span> · 5 nights</div>
+        <a href="#" class="explore-btn">Explore →</a>
+      </div>
+    </div>
+
+    <!-- Santorini -->
+    <div class="dest-card reveal d2">
+      <svg class="card-img" viewBox="0 0 380 340" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky -->
+        <rect width="380" height="340" fill="#2a7fd4"/>
+        <ellipse cx="190" cy="80" rx="250" ry="100" fill="#3d8fe0" opacity=".6"/>
+        <!-- Clouds -->
+        <ellipse cx="80" cy="60" rx="65" ry="22" fill="white" opacity=".8"/>
+        <ellipse cx="55" cy="58" rx="38" ry="16" fill="white" opacity=".75"/>
+        <ellipse cx="310" cy="80" rx="55" ry="18" fill="white" opacity=".7"/>
+        <!-- Sea -->
+        <rect x="0" y="230" width="380" height="110" fill="#1555a0"/>
+        <ellipse cx="190" cy="238" rx="280" ry="30" fill="#1d65b5" opacity=".7"/>
+        <!-- White cubic buildings -->
+        <!-- Back row -->
+        <rect x="20" y="150" width="55" height="80" rx="3" fill="#f0eee8"/>
+        <rect x="30" y="135" width="40" height="25" rx="3" fill="#e8e6e0"/>
+        <rect x="80" y="140" width="50" height="90" rx="3" fill="#ece9e2"/>
+        <rect x="90" y="128" width="35" height="22" rx="3" fill="#e8e5de"/>
+        <rect x="135" y="145" width="60" height="85" rx="3" fill="#f2f0ea"/>
+        <rect x="200" y="150" width="55" height="80" rx="3" fill="#edeae4"/>
+        <rect x="260" y="138" width="60" height="92" rx="3" fill="#f0eee8"/>
+        <rect x="325" y="148" width="55" height="82" rx="3" fill="#eae8e2"/>
+        <!-- Front row buildings -->
+        <rect x="0" y="185" width="65" height="65" rx="3" fill="#f5f4f0"/>
+        <rect x="70" y="178" width="70" height="72" rx="3" fill="#f8f7f3"/>
+        <rect x="145" y="182" width="65" height="68" rx="3" fill="#f5f4f0"/>
+        <rect x="215" y="175" width="70" height="75" rx="3" fill="#f0efe9"/>
+        <rect x="290" y="180" width="90" height="70" rx="3" fill="#f5f4f0"/>
+        <!-- Blue domes -->
+        <ellipse cx="48" cy="185" rx="22" ry="10" fill="#2870cc"/>
+        <path d="M26 185 Q48 165,70 185Z" fill="#2870cc"/>
+        <ellipse cx="48" cy="185" rx="15" ry="7" fill="#3080dd"/>
+        <ellipse cx="200" cy="182" rx="25" ry="11" fill="#2870cc"/>
+        <path d="M175 182 Q200 158,225 182Z" fill="#2870cc"/>
+        <ellipse cx="200" cy="182" rx="17" ry="8" fill="#3080dd"/>
+        <ellipse cx="320" cy="178" rx="22" ry="10" fill="#2870cc"/>
+        <path d="M298 178 Q320 156,342 178Z" fill="#2870cc"/>
+        <!-- Windows and doors -->
+        <rect x="30" y="196" width="12" height="18" rx="3" fill="#60a0e8" opacity=".8"/>
+        <rect x="46" y="196" width="10" height="14" rx="2" fill="#60a0e8" opacity=".7"/>
+        <rect x="82" y="188" width="11" height="16" rx="2" fill="#60a0e8" opacity=".75"/>
+        <rect x="98" y="188" width="10" height="16" rx="2" fill="#60a0e8" opacity=".7"/>
+        <rect x="158" y="192" width="12" height="18" rx="3" fill="#60a0e8" opacity=".8"/>
+        <rect x="175" y="192" width="10" height="14" rx="2" fill="#60a0e8" opacity=".7"/>
+        <rect x="228" y="185" width="12" height="18" rx="3" fill="#60a0e8" opacity=".8"/>
+        <rect x="245" y="185" width="10" height="14" rx="2" fill="#60a0e8" opacity=".7"/>
+        <!-- Stairs -->
+        <rect x="113" y="225" width="20" height="5" fill="#d8d5ce"/>
+        <rect x="118" y="230" width="15" height="5" fill="#d0cdc6"/>
+        <rect x="123" y="235" width="10" height="5" fill="#c8c5be"/>
+        <!-- Flowers on terrace -->
+        <circle cx="35" cy="220" r="5" fill="#e84848"/>
+        <circle cx="42" cy="222" r="4" fill="#f06060"/>
+        <circle cx="310" cy="218" r="5" fill="#e84848"/>
+        <circle cx="317" cy="220" r="4" fill="#f06060"/>
+        <!-- Sea details -->
+        <path d="M0 248 Q95 242,190 248 Q285 254,380 248" stroke="rgba(255,255,255,.18)" stroke-width="1.5" fill="none"/>
+        <path d="M0 265 Q95 259,190 265 Q285 271,380 265" stroke="rgba(255,255,255,.13)" stroke-width="1" fill="none"/>
+        <!-- Boat -->
+        <path d="M150 280 Q175 272,200 280 L195 290 Q175 295,155 290Z" fill="white" opacity=".85"/>
+        <rect x="172" y="268" width="2" height="14" fill="white" opacity=".7"/>
+      </svg>
+      <div class="card-body">
+        <div class="region">Greece · Cyclades</div>
+        <div class="dest-name">Santorini</div>
+        <div class="dest-meta">From <span>$3,200</span> · 6 nights</div>
+        <a href="#" class="explore-btn">Explore →</a>
+      </div>
+    </div>
+
+    <!-- Serengeti -->
+    <div class="dest-card reveal d1">
+      <svg class="card-img" viewBox="0 0 380 240" preserveAspectRatio="xMidYMid slice">
+        <!-- Sunset sky -->
+        <rect width="380" height="240" fill="#2a1a0a"/>
+        <ellipse cx="190" cy="100" rx="240" ry="120" fill="#7a3a08" opacity=".8"/>
+        <ellipse cx="190" cy="110" rx="160" ry="80" fill="#c45a10" opacity=".75"/>
+        <ellipse cx="190" cy="118" rx="100" ry="55" fill="#e87828" opacity=".7"/>
+        <ellipse cx="190" cy="125" rx="60" ry="35" fill="#f5a030" opacity=".65"/>
+        <!-- Sun -->
+        <circle cx="190" cy="130" r="32" fill="#f5a623"/>
+        <circle cx="190" cy="130" r="22" fill="#ffd060"/>
+        <circle cx="190" cy="130" r="14" fill="#fff4c0"/>
+        <!-- Horizon line -->
+        <rect x="0" y="152" width="380" height="3" fill="#e07020" opacity=".3"/>
+        <!-- Ground: savanna -->
+        <rect x="0" y="150" width="380" height="90" fill="#3a2808"/>
+        <ellipse cx="190" cy="155" rx="300" ry="20" fill="#4a3210" opacity=".8"/>
+        <rect x="0" y="170" width="380" height="70" fill="#2a1c08"/>
+        <!-- Grass texture -->
+        <path d="M10 170 Q12 155,14 170" stroke="#5a4018" stroke-width="1.5" fill="none"/>
+        <path d="M25 168 Q27 152,29 168" stroke="#5a4018" stroke-width="1.5" fill="none"/>
+        <path d="M40 172 Q42 156,44 172" stroke="#4a3210" stroke-width="1.5" fill="none"/>
+        <path d="M55 169 Q57 153,59 169" stroke="#5a4018" stroke-width="1.5" fill="none"/>
+        <path d="M70 171 Q72 155,74 171" stroke="#4a3210" stroke-width="1.5" fill="none"/>
+        <path d="M340 170 Q342 155,344 170" stroke="#5a4018" stroke-width="1.5" fill="none"/>
+        <path d="M355 168 Q357 152,359 168" stroke="#4a3210" stroke-width="1.5" fill="none"/>
+        <!-- Acacia trees (silhouettes) -->
+        <rect x="48" y="110" width="6" height="45" fill="#1a1008"/>
+        <path d="M25 110 Q51 90,75 110Z" fill="#1a1008"/>
+        <path d="M30 105 Q51 85,72 105Z" fill="#1e1408"/>
+        <rect x="280" y="105" width="7" height="50" fill="#1a1008"/>
+        <path d="M258 105 Q283 82,308 105Z" fill="#1a1008"/>
+        <path d="M262 100 Q283 78,304 100Z" fill="#1e1408"/>
+        <!-- Small acacia -->
+        <rect x="148" y="128" width="4" height="28" fill="#1a1008"/>
+        <path d="M133 128 Q150 115,167 128Z" fill="#1a1008"/>
+        <!-- Elephant silhouettes -->
+        <path d="M200 152 Q210 130,225 128 Q240 126,248 132 Q255 138,255 148 Q258 148,262 155 Q258 156,255 155 L255 165 L245 165 L245 158 L220 158 L220 165 L210 165 L210 158 Q200 155,200 152Z" fill="#1a1008"/>
+        <path d="M225 128 Q230 115,238 118" stroke="#1a1008" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Birds in sky -->
+        <path d="M100 80 Q105 75,110 80" stroke="#1a1008" stroke-width="1.5" fill="none"/>
+        <path d="M115 72 Q120 67,125 72" stroke="#1a1008" stroke-width="1.5" fill="none"/>
+        <path d="M130 85 Q135 80,140 85" stroke="#2a1808" stroke-width="1.5" fill="none"/>
+        <path d="M248 75 Q253 70,258 75" stroke="#1a1008" stroke-width="1.5" fill="none"/>
+        <path d="M265 82 Q270 77,275 82" stroke="#1a1008" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div class="card-body">
+        <div class="region">Tanzania · Africa</div>
+        <div class="dest-name">Serengeti</div>
+        <div class="dest-meta">From <span>$5,600</span> · 8 nights</div>
+        <a href="#" class="explore-btn">Explore →</a>
+      </div>
+    </div>
+
+    <!-- Maldives -->
+    <div class="dest-card reveal d2">
+      <svg class="card-img" viewBox="0 0 380 240" preserveAspectRatio="xMidYMid slice">
+        <!-- Sky -->
+        <rect width="380" height="240" fill="#87ceeb"/>
+        <ellipse cx="190" cy="60" rx="260" ry="80" fill="#a0d8f0" opacity=".5"/>
+        <!-- Clouds -->
+        <ellipse cx="100" cy="50" rx="75" ry="24" fill="white" opacity=".9"/>
+        <ellipse cx="70" cy="48" rx="45" ry="18" fill="white" opacity=".85"/>
+        <ellipse cx="140" cy="52" rx="42" ry="16" fill="white" opacity=".85"/>
+        <ellipse cx="300" cy="60" rx="65" ry="20" fill="white" opacity=".8"/>
+        <ellipse cx="340" cy="62" rx="40" ry="15" fill="white" opacity=".75"/>
+        <!-- Lagoon water - multiple layers for depth -->
+        <rect x="0" y="130" width="380" height="110" fill="#005f8a"/>
+        <ellipse cx="190" cy="138" rx="350" ry="35" fill="#0080b5" opacity=".7"/>
+        <!-- Shallow turquoise zone -->
+        <ellipse cx="190" cy="150" rx="280" ry="45" fill="#00b5d8" opacity=".65"/>
+        <ellipse cx="190" cy="158" rx="210" ry="35" fill="#00c8e8" opacity=".6"/>
+        <ellipse cx="190" cy="164" rx="150" ry="25" fill="#40d8f0" opacity=".5"/>
+        <!-- Sandy beach/island -->
+        <ellipse cx="190" cy="148" rx="170" ry="28" fill="#f5e6b0"/>
+        <ellipse cx="190" cy="145" rx="155" ry="22" fill="#f8ecbc"/>
+        <ellipse cx="190" cy="142" rx="140" ry="16" fill="#faf0c4"/>
+        <!-- Palm trees -->
+        <path d="M135 142 Q130 110,128 80" stroke="#5a3520" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M128 80 Q110 65,95 60 Q108 65,128 80Z" fill="#3a7a3a"/>
+        <path d="M128 80 Q115 72,105 80 Q116 74,128 80Z" fill="#2d6a2d"/>
+        <path d="M128 80 Q140 60,150 52 Q140 63,128 80Z" fill="#3a7a3a"/>
+        <path d="M128 80 Q148 70,162 75 Q148 72,128 80Z" fill="#2d6a2d"/>
+        <path d="M128 80 Q132 62,135 50 Q132 63,128 80Z" fill="#3a7a3a"/>
+        <!-- Palm 2 -->
+        <path d="M248 140 Q252 108,255 78" stroke="#5a3520" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M255 78 Q272 62,288 57 Q274 63,255 78Z" fill="#3a7a3a"/>
+        <path d="M255 78 Q265 70,272 80 Q264 73,255 78Z" fill="#2d6a2d"/>
+        <path d="M255 78 Q242 58,232 52 Q243 62,255 78Z" fill="#3a7a3a"/>
+        <path d="M255 78 Q238 70,224 78 Q239 73,255 78Z" fill="#2d6a2d"/>
+        <path d="M255 78 Q252 60,250 48 Q252 62,255 78Z" fill="#3a7a3a"/>
+        <!-- Overwater bungalow -->
+        <rect x="160" y="126" width="60" height="34" rx="3" fill="#e8d4a8"/>
+        <path d="M152 128 L190 112 L228 128Z" fill="#c8946a"/>
+        <rect x="185" y="134" width="10" height="18" rx="2" fill="#8b6040"/>
+        <rect x="168" y="130" width="9" height="9" fill="rgba(135,206,235,.8)"/>
+        <rect x="203" y="130" width="9" height="9" fill="rgba(135,206,235,.8)"/>
+        <!-- Dock/walkway -->
+        <rect x="186" y="158" width="8" height="35" fill="#d4a870" opacity=".8"/>
+        <!-- Hammock/sunbeds suggestion -->
+        <ellipse cx="155" cy="148" rx="10" ry="5" fill="#f0c878" opacity=".8"/>
+        <ellipse cx="225" cy="148" rx="10" ry="5" fill="#f0c878" opacity=".8"/>
+        <!-- Water ripples -->
+        <path d="M40 175 Q80 170,120 175" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none"/>
+        <path d="M260 168 Q300 163,340 168" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none"/>
+        <path d="M20 195 Q95 189,170 195" stroke="rgba(255,255,255,.18)" stroke-width="1" fill="none"/>
+        <path d="M210 188 Q285 182,360 188" stroke="rgba(255,255,255,.18)" stroke-width="1" fill="none"/>
+        <!-- Fish visible through water -->
+        <ellipse cx="80" cy="180" rx="7" ry="3" fill="rgba(255,200,50,.3)"/>
+        <ellipse cx="310" cy="175" rx="6" ry="2.5" fill="rgba(255,200,50,.25)"/>
+      </svg>
+      <div class="card-body">
+        <div class="region">Maldives · Indian Ocean</div>
+        <div class="dest-name">North Malé Atoll</div>
+        <div class="dest-meta">From <span>$6,400</span> · 7 nights</div>
+        <a href="#" class="explore-btn">Explore →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCES -->
+<section class="section" id="experiences">
+  <div class="reveal">
+    <p class="s-eyebrow">Curated For You</p>
+    <h2 class="s-title">Exclusive <em>experiences</em></h2>
+    <p class="s-sub">Every journey is meticulously designed — not just a trip, but a transformation.</p>
+  </div>
+  <div class="exp-grid">
+
+    <!-- Private yacht -->
+    <div class="exp-card reveal">
+      <div class="exp-img">
+        <svg viewBox="0 0 380 220" preserveAspectRatio="xMidYMid slice" width="380" height="220">
+          <rect width="380" height="220" fill="#1a4a6e"/>
+          <ellipse cx="190" cy="80" rx="250" ry="80" fill="#2060a0" opacity=".6"/>
+          <!-- Horizon glow -->
+          <rect x="0" y="118" width="380" height="4" fill="#6090d0" opacity=".4"/>
+          <!-- Water -->
+          <rect x="0" y="120" width="380" height="100" fill="#0a3055"/>
+          <ellipse cx="190" cy="128" rx="300" ry="25" fill="#1550a0" opacity=".5"/>
+          <!-- Sky clouds -->
+          <ellipse cx="80" cy="55" rx="70" ry="22" fill="rgba(255,255,255,.15)"/>
+          <ellipse cx="300" cy="40" rx="80" ry="25" fill="rgba(255,255,255,.12)"/>
+          <!-- Yacht hull -->
+          <path d="M80 145 Q190 128,300 145 L290 165 Q190 175,90 165Z" fill="#f5f5f5"/>
+          <path d="M82 163 Q190 172,298 163 L300 167 Q190 178,80 167Z" fill="#d0d0d0"/>
+          <!-- Red stripe on hull -->
+          <path d="M88 158 Q190 167,292 158 L292 163 Q190 172,88 163Z" fill="#e03030"/>
+          <!-- Yacht cabin -->
+          <rect x="148" y="115" width="110" height="35" rx="4" fill="#f0f0ee"/>
+          <rect x="155" y="108" width="90" height="16" rx="3" fill="#e8e8e4"/>
+          <rect x="162" y="103" width="70" height="14" rx="3" fill="#e0e0dc"/>
+          <!-- Windows -->
+          <rect x="158" y="118" width="16" height="11" rx="2" fill="rgba(100,160,220,.8)"/>
+          <rect x="178" y="118" width="16" height="11" rx="2" fill="rgba(100,160,220,.75)"/>
+          <rect x="198" y="118" width="16" height="11" rx="2" fill="rgba(100,160,220,.8)"/>
+          <rect x="218" y="118" width="16" height="11" rx="2" fill="rgba(100,160,220,.7)"/>
+          <!-- Mast & sails -->
+          <line x1="203" y1="60" x2="203" y2="145" stroke="#c8a870" stroke-width="2.5"/>
+          <!-- Main sail -->
+          <path d="M203 65 Q240 85,203 145Z" fill="rgba(255,255,255,.88)"/>
+          <path d="M203 65 Q240 85,210 145Z" fill="rgba(240,240,240,.8)"/>
+          <!-- Jib -->
+          <path d="M203 70 Q170 95,190 140 Z" fill="rgba(255,255,255,.8)"/>
+          <!-- Flag -->
+          <path d="M203 60 L218 65 L203 70Z" fill="#e03030"/>
+          <!-- Boom -->
+          <line x1="155" y1="145" x2="255" y2="125" stroke="#a08050" stroke-width="2"/>
+          <!-- Water reflections -->
+          <path d="M100 148 Q190 142,280 148" stroke="rgba(255,255,255,.15)" stroke-width="1.5" fill="none"/>
+          <path d="M60 162 Q190 155,320 162" stroke="rgba(255,255,255,.12)" stroke-width="1" fill="none"/>
+          <path d="M40 178 Q190 170,340 178" stroke="rgba(255,255,255,.1)" stroke-width="1" fill="none"/>
+          <!-- Spray/wake -->
+          <path d="M82 160 Q60 165,40 162" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none"/>
+          <path d="M298 160 Q320 165,340 162" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none"/>
+          <!-- Sun -->
+          <circle cx="310" cy="45" r="20" fill="#f5c030" opacity=".9"/>
+          <circle cx="310" cy="45" r="13" fill="#f8d860" opacity=".8"/>
+        </svg>
+      </div>
+      <div class="exp-body">
+        <p class="exp-cat">Private Charter</p>
+        <h3>Mediterranean Sailing</h3>
+        <p>Glide across sapphire waters on a private yacht. Custom itineraries, world-class chefs, and coastlines reserved for the few.</p>
+        <div class="exp-footer">
+          <div>
+            <p class="price-from">From</p>
+            <p class="price-val">$12,400 <span>/ week</span></p>
+          </div>
+          <a href="#" class="book-link">Book Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mountain retreat -->
+    <div class="exp-card reveal d1">
+      <div class="exp-img">
+        <svg viewBox="0 0 380 220" preserveAspectRatio="xMidYMid slice" width="380" height="220">
+          <!-- Sky: alpine dusk -->
+          <rect width="380" height="220" fill="#1a2a4a"/>
+          <ellipse cx="190" cy="60" rx="260" ry="80" fill="#243560" opacity=".7"/>
+          <!-- Stars -->
+          <circle cx="40" cy="20" r="1.2" fill="white" opacity=".8"/>
+          <circle cx="120" cy="12" r="1" fill="white" opacity=".7"/>
+          <circle cx="200" cy="8" r="1.4" fill="white" opacity=".9"/>
+          <circle cx="280" cy="15" r="1" fill="white" opacity=".7"/>
+          <circle cx="350" cy="25" r="1.2" fill="white" opacity=".8"/>
+          <circle cx="80" cy="35" r=".9" fill="white" opacity=".6"/>
+          <circle cx="160" cy="30" r="1" fill="white" opacity=".65"/>
+          <circle cx="240" cy="22" r=".9" fill="white" opacity=".6"/>
+          <circle cx="320" cy="38" r="1.1" fill="white" opacity=".7"/>
+          <!-- Moon -->
+          <circle cx="330" cy="30" r="14" fill="#f5f0d0" opacity=".9"/>
+          <circle cx="336" cy="26" r="12" fill="#1a2a4a"/>
+          <!-- Mountain range (far, snowy) -->
+          <path d="M0 120 Q40 65,80 60 Q100 56,115 68 Q135 80,150 70 Q175 55,200 48 Q225 42,250 55 Q270 65,290 58 Q315 48,345 60 Q362 68,380 75 L380 180 L0 180Z" fill="#3a4a6a"/>
+          <!-- Snow caps -->
+          <path d="M160 70 Q175 55,200 48 Q225 42,250 55 Q238 50,225 54 Q210 58,200 52 Q188 56,176 64Z" fill="white" opacity=".9"/>
+          <path d="M78 60 Q100 56,115 68 Q105 58,96 60 Q87 62,80 64Z" fill="white" opacity=".85"/>
+          <path d="M344 60 Q362 68,380 75 Q367 66,358 62 Q350 60,344 62Z" fill="white" opacity=".8"/>
+          <!-- Middle mountain range -->
+          <path d="M0 135 Q50 100,100 105 Q140 108,170 98 Q200 88,230 100 Q260 112,300 105 Q340 98,380 108 L380 190 L0 190Z" fill="#2a3855"/>
+          <!-- Foreground: pine forest -->
+          <path d="M0 160 L0 190 L380 190 L380 160 Q340 145,310 155 Q280 165,250 155 Q220 145,190 155 Q160 165,130 155 Q100 145,70 155 Q40 165,10 155Z" fill="#0a1e14"/>
+          <!-- Pine trees -->
+          <g fill="#0f2a1a">
+            <polygon points="20,162 28,135 36,162"/>
+            <polygon points="14,162 28,128 42,162"/>
+            <polygon points="50,160 58,138 66,160"/>
+            <polygon points="44,162 58,130 72,162"/>
+            <polygon points="80,158 88,136 96,158"/>
+            <polygon points="74,162 88,128 102,162"/>
+            <polygon points="310,158 318,136 326,158"/>
+            <polygon points="304,162 318,128 332,162"/>
+            <polygon points="340,160 348,138 356,160"/>
+            <polygon points="334,162 348,130 362,162"/>
+            <polygon points="365,158 373,136 381,158"/>
+          </g>
+          <!-- Chalet/lodge -->
+          <rect x="148" y="140" width="84" height="45" fill="#c8a870"/>
+          <path d="M138 142 L190 115 L242 142Z" fill="#8b6040"/>
+          <rect x="148" y="158" width="20" height="27" rx="2" fill="#6b4020"/>
+          <rect x="152" y="143" width="14" height="12" fill="rgba(255,200,100,.7)"/>
+          <rect x="170" y="143" width="14" height="12" fill="rgba(255,200,100,.65)"/>
+          <rect x="200" y="143" width="14" height="12" fill="rgba(255,200,100,.7)"/>
+          <rect x="218" y="143" width="14" height="12" fill="rgba(255,200,100,.65)"/>
+          <!-- Chimney smoke -->
+          <path d="M195 115 Q192 105,197 95 Q202 85,198 75" stroke="rgba(255,255,255,.3)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Snow on ground -->
+          <ellipse cx="190" cy="188" rx="200" ry="12" fill="white" opacity=".2"/>
+          <!-- Warm glow from windows -->
+          <ellipse cx="159" cy="149" rx="10" ry="8" fill="#f0a030" opacity=".15"/>
+          <ellipse cx="227" cy="149" rx="10" ry="8" fill="#f0a030" opacity=".15"/>
+        </svg>
+      </div>
+      <div class="exp-body">
+        <p class="exp-cat">Alpine Escape</p>
+        <h3>Swiss Mountain Retreat</h3>
+        <p>Secluded luxury chalets, stargazing evenings, and pristine powder runs. The Alps at their most intimate and exclusive.</p>
+        <div class="exp-footer">
+          <div>
+            <p class="price-from">From</p>
+            <p class="price-val">$8,900 <span>/ week</span></p>
+          </div>
+          <a href="#" class="book-link">Book Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desert camp -->
+    <div class="exp-card reveal d2">
+      <div class="exp-img">
+        <svg viewBox="0 0 380 220" preserveAspectRatio="xMidYMid slice" width="380" height="220">
+          <!-- Desert night sky -->
+          <rect width="380" height="220" fill="#0a0a20"/>
+          <ellipse cx="190" cy="60" rx="260" ry="90" fill="#0f1535" opacity=".8"/>
+          <!-- Milky way band -->
+          <ellipse cx="190" cy="70" rx="300" ry="30" fill="rgba(200,200,255,.04)"/>
+          <ellipse cx="180" cy="65" rx="250" ry="20" fill="rgba(200,200,255,.03)"/>
+          <!-- Stars many -->
+          <circle cx="20" cy="15" r="1.3" fill="white" opacity=".9"/>
+          <circle cx="55" cy="8" r="1" fill="white" opacity=".8"/>
+          <circle cx="95" cy="20" r="1.5" fill="white" opacity=".95"/>
+          <circle cx="135" cy="10" r="1.1" fill="white" opacity=".85"/>
+          <circle cx="175" cy="5" r="1.3" fill="white" opacity=".9"/>
+          <circle cx="215" cy="12" r="1" fill="white" opacity=".8"/>
+          <circle cx="255" cy="7" r="1.4" fill="white" opacity=".9"/>
+          <circle cx="295" cy="18" r="1" fill="white" opacity=".8"/>
+          <circle cx="335" cy="10" r="1.2" fill="white" opacity=".85"/>
+          <circle cx="370" cy="22" r="1" fill="white" opacity=".75"/>
+          <circle cx="38" cy="38" r=".9" fill="white" opacity=".7"/>
+          <circle cx="78" cy="45" r="1.1" fill="white" opacity=".75"/>
+          <circle cx="118" cy="35" r=".9" fill="white" opacity=".7"/>
+          <circle cx="158" cy="42" r="1" fill="white" opacity=".7"/>
+          <circle cx="198" cy="30" r=".9" fill="white" opacity=".65"/>
+          <circle cx="238" cy="40" r="1.1" fill="white" opacity=".75"/>
+          <circle cx="278" cy="35" r=".9" fill="white" opacity=".7"/>
+          <circle cx="318" cy="45" r="1" fill="white" opacity=".7"/>
+          <circle cx="358" cy="40" r=".9" fill="white" opacity=".65"/>
+          <!-- Moon -->
+          <circle cx="60" cy="40" r="18" fill="#f0e8c0" opacity=".95"/>
+          <circle cx="68" cy="35" r="15" fill="#0a0a20"/>
+          <!-- Dune silhouettes -->
+          <path d="M0 140 Q60 100,130 110 Q180 118,220 105 Q270 90,320 108 Q350 120,380 115 L380 220 L0 220Z" fill="#1a0f05"/>
+          <path d="M0 160 Q40 140,90 148 Q140 156,190 145 Q240 134,290 148 Q330 158,380 152 L380 220 L0 220Z" fill="#24150a"/>
+          <path d="M0 180 Q70 165,150 175 Q230 185,310 172 Q345 166,380 170 L380 220 L0 220Z" fill="#2e1c0e"/>
+          <!-- Luxury desert camp tents -->
+          <!-- Main tent -->
+          <path d="M130 165 L190 135 L250 165Z" fill="#8b7040"/>
+          <rect x="140" y="165" width="100" height="30" fill="#9a8050"/>
+          <path d="M138 165 L190 128 L242 165Z" fill="#7a6030" opacity=".5"/>
+          <!-- Tent opening with warm light -->
+          <path d="M175 165 L190 145 L205 165Z" fill="#f0a030" opacity=".8"/>
+          <ellipse cx="190" cy="175" rx="20" ry="6" fill="#f0a030" opacity=".15"/>
+          <!-- Smaller tent left -->
+          <path d="M60 175 L95 155 L130 175Z" fill="#8b7040"/>
+          <rect x="68" y="175" width="54" height="22" fill="#9a8050"/>
+          <path d="M85 168 L95 158 L105 168Z" fill="#f0a030" opacity=".7"/>
+          <!-- Smaller tent right -->
+          <path d="M250 175 L285 155 L320 175Z" fill="#8b7040"/>
+          <rect x="258" y="175" width="54" height="22" fill="#9a8050"/>
+          <path d="M275 168 L285 158 L295 168Z" fill="#f0a030" opacity=".7"/>
+          <!-- Campfire -->
+          <ellipse cx="190" cy="200" rx="12" ry="4" fill="#8b5a2a"/>
+          <path d="M186 200 Q190 185,194 200Z" fill="#f08020" opacity=".9"/>
+          <path d="M188 200 Q192 188,196 200Z" fill="#f0a030" opacity=".8"/>
+          <path d="M184 200 Q190 190,196 200Z" fill="#e06010" opacity=".7"/>
+          <ellipse cx="190" cy="200" rx="18" ry="6" fill="#f08020" opacity=".12"/>
+          <!-- Camel silhouettes far -->
+          <path d="M50 155 Q55 148,60 146 Q63 144,66 146 Q68 144,72 143 Q76 142,78 145 Q80 142,84 142 Q87 143,88 146 L88 157 L82 157 L82 153 L68 153 L68 157 L62 157 L62 153 Q56 153,52 157Z" fill="#150b05"/>
+          <!-- Stars reflection on sand -->
+          <circle cx="100" cy="195" r="1" fill="rgba(255,255,255,.15)"/>
+          <circle cx="280" cy="188" r=".8" fill="rgba(255,255,255,.12)"/>
+        </svg>
+      </div>
+      <div class="exp-body">
+        <p class="exp-cat">Desert Nights</p>
+        <h3>Sahara Glamping</h3>
+        <p>Sleep beneath a billion stars in a luxury Berber camp. Private guides, camel treks, and silk-draped tents in Morocco's golden dunes.</p>
+        <div class="exp-footer">
+          <div>
+            <p class="price-from">From</p>
+            <p class="price-val">$5,200 <span>/ week</span></p>
+          </div>
+          <a href="#" class="book-link">Book Now →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy" id="philosophy">
+<div class="phil-inner">
+  <div class="phil-visual reveal">
+    <!-- Main image: rainforest canopy -->
+    <div class="phil-img-main">
+      <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+        <rect width="400" height="420" fill="#0d2010"/>
+        <!-- Light rays from above -->
+        <path d="M180 0 L140 420" stroke="rgba(255,220,100,.06)" stroke-width="30" fill="none"/>
+        <path d="M220 0 L260 420" stroke="rgba(255,220,100,.05)" stroke-width="25" fill="none"/>
+        <path d="M200 0 L200 420" stroke="rgba(255,220,100,.07)" stroke-width="20" fill="none"/>
+        <!-- Canopy layers -->
+        <ellipse cx="80" cy="30" rx="120" ry="55" fill="#1a4a20"/>
+        <ellipse cx="200" cy="15" rx="140" ry="60" fill="#1e5524"/>
+        <ellipse cx="330" cy="25" rx="110" ry="50" fill="#1a4a20"/>
+        <ellipse cx="50" cy="55" rx="90" ry="45" fill="#164018"/>
+        <ellipse cx="360" cy="50" rx="100" ry="48" fill="#1e5524"/>
+        <!-- Mid canopy -->
+        <ellipse cx="100" cy="120" rx="110" ry="50" fill="#1e5a22"/>
+        <ellipse cx="280" cy="110" rx="120" ry="55" fill="#1a5020"/>
+        <ellipse cx="200" cy="130" rx="100" ry="45" fill="#245a28"/>
+        <!-- Ferns -->
+        <path d="M60 300 Q40 260,20 220 Q40 240,60 280" stroke="#2a6a2a" stroke-width="3" fill="none"/>
+        <path d="M60 300 Q80 265,100 235 Q82 255,62 285" stroke="#2a6a2a" stroke-width="3" fill="none"/>
+        <path d="M340 310 Q360 270,375 230 Q360 250,342 280" stroke="#2a6a2a" stroke-width="3" fill="none"/>
+        <path d="M340 310 Q320 272,300 240 Q320 260,338 290" stroke="#2a6a2a" stroke-width="3" fill="none"/>
+        <!-- Tree trunks -->
+        <rect x="48" y="60" width="28" height="360" rx="4" fill="#2a1a0a"/>
+        <rect x="50" y="60" width="10" height="360" rx="3" fill="#3a2510" opacity=".6"/>
+        <rect x="175" y="50" width="25" height="370" rx="4" fill="#2a1a0a"/>
+        <rect x="310" y="55" width="30" height="365" rx="4" fill="#2a1a0a"/>
+        <!-- Hanging vines -->
+        <path d="M100 0 Q90 80,100 160 Q110 240,95 420" stroke="#2d5a20" stroke-width="2.5" fill="none"/>
+        <path d="M230 0 Q245 100,235 200 Q225 300,240 420" stroke="#2d5a20" stroke-width="2" fill="none"/>
+        <path d="M300 0 Q285 90,295 180 Q305 270,290 420" stroke="#285018" stroke-width="2" fill="none"/>
+        <!-- Tropical leaves -->
+        <path d="M110 160 Q140 140,168 155 Q155 165,128 170Z" fill="#3a7a3a"/>
+        <path d="M100 200 Q75 180,55 195 Q68 205,95 208Z" fill="#3a7a3a"/>
+        <path d="M270 180 Q295 160,320 172 Q308 182,278 186Z" fill="#2d6a2d"/>
+        <path d="M280 240 Q255 220,235 235 Q248 245,275 248Z" fill="#3a7a3a"/>
+        <!-- Exotic flower: orange/red -->
+        <path d="M195 250 Q210 235,220 245 Q215 255,205 260Z" fill="#e05020"/>
+        <path d="M195 250 Q192 232,204 235 Q208 248,205 260Z" fill="#f07040"/>
+        <path d="M195 250 Q182 238,178 250 Q182 260,195 262Z" fill="#e04030"/>
+        <circle cx="195" cy="252" r="5" fill="#f0c030"/>
+        <!-- Blue morpho butterfly -->
+        <path d="M155 190 Q168 178,175 188 Q172 198,160 196Z" fill="#4080f0" opacity=".85"/>
+        <path d="M155 190 Q142 178,135 188 Q138 198,150 196Z" fill="#3070e0" opacity=".8"/>
+        <circle cx="155" cy="191" r="2" fill="#1a1a1a"/>
+        <!-- Mist/atmospheric haze -->
+        <rect x="0" y="200" width="400" height="40" fill="rgba(255,255,255,.04)"/>
+        <rect x="0" y="280" width="400" height="30" fill="rgba(255,255,255,.03)"/>
+        <!-- Ground cover -->
+        <rect x="0" y="380" width="400" height="40" fill="#0d1a0a"/>
+        <ellipse cx="200" cy="385" rx="280" ry="20" fill="#0a1508"/>
+      </svg>
+    </div>
+    <!-- Accent image: local market -->
+    <div class="phil-img-accent">
+      <svg viewBox="0 0 280 260" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+        <rect width="280" height="260" fill="#f5e8d0"/>
+        <!-- Market stall canopies -->
+        <rect x="0" y="30" width="90" height="8" fill="#e84040"/>
+        <path d="M0 38 L45 50 L90 38Z" fill="#c83030"/>
+        <rect x="95" y="25" width="90" height="8" fill="#f0c030"/>
+        <path d="M95 33 L140 46 L185 33Z" fill="#d4a820"/>
+        <rect x="190" y="30" width="90" height="8" fill="#4080e0"/>
+        <path d="M190 38 L235 50 L280 38Z" fill="#3060c0"/>
+        <!-- Stall displays -->
+        <!-- Spice stall -->
+        <rect x="5" y="50" width="80" height="100" rx="3" fill="#d4a870"/>
+        <ellipse cx="25" cy="65" rx="14" ry="8" fill="#e07020"/>
+        <ellipse cx="50" cy="62" rx="14" ry="8" fill="#d04010"/>
+        <ellipse cx="72" cy="67" rx="12" ry="8" fill="#c8b020"/>
+        <ellipse cx="28" cy="82" rx="14" ry="8" fill="#a83020"/>
+        <ellipse cx="55" cy="80" rx="12" ry="8" fill="#c86020"/>
+        <ellipse cx="75" cy="85" rx="10" ry="8" fill="#808020"/>
+        <!-- Fruit stall -->
+        <rect x="100" y="46" width="80" height="104" rx="3" fill="#c8a870"/>
+        <circle cx="120" cy="65" r="10" fill="#e84040"/>
+        <circle cx="140" cy="62" r="11" fill="#f0c030"/>
+        <circle cx="162" cy="65" r="10" fill="#f08030"/>
+        <circle cx="115" cy="85" r="9" fill="#60c060"/>
+        <circle cx="137" cy="82" r="10" fill="#e84040"/>
+        <circle cx="160" cy="83" r="9" fill="#f0c030"/>
+        <circle cx="125" cy="100" r="8" fill="#f08030"/>
+        <circle cx="148" cy="98" r="9" fill="#60c060"/>
+        <!-- Textile stall -->
+        <rect x="195" y="50" width="80" height="100" rx="3" fill="#b09060"/>
+        <rect x="200" y="55" width="24" height="40" fill="#e84080"/>
+        <rect x="204" y="60" width="16" height="30" fill="#c83060"/>
+        <rect x="228" y="52" width="22" height="44" fill="#4080f0"/>
+        <rect x="232" y="57" width="14" height="32" fill="#3060d0"/>
+        <rect x="254" y="55" width="16" height="40" fill="#f0c030"/>
+        <rect x="258" y="60" width="8" height="28" fill="#d4a820"/>
+        <rect x="203" y="100" width="68" height="20" fill="#e8a040" opacity=".7"/>
+        <!-- People silhouettes -->
+        <ellipse cx="55" cy="158" rx="12" ry="6" fill="#6a4a2a"/>
+        <rect x="49" y="158" width="12" height="30" rx="3" fill="#6a4a2a"/>
+        <circle cx="55" cy="152" r="8" fill="#8a6a4a"/>
+        <ellipse cx="150" cy="156" rx="12" ry="6" fill="#4a4a6a"/>
+        <rect x="144" y="156" width="12" height="32" rx="3" fill="#4a4a6a"/>
+        <circle cx="150" cy="150" r="8" fill="#7a6a5a"/>
+        <ellipse cx="240" cy="158" rx="11" ry="6" fill="#9a5a2a"/>
+        <rect x="234" y="158" width="12" height="30" rx="3" fill="#9a5a2a"/>
+        <circle cx="240" cy="152" r="8" fill="#c49070"/>
+        <!-- Ground / cobblestones -->
+        <rect x="0" y="200" width="280" height="60" fill="#c8b898"/>
+        <ellipse cx="30" cy="208" rx="15" ry="5" fill="#b8a888"/>
+        <ellipse cx="75" cy="212" rx="18" ry="5" fill="#c0b090"/>
+        <ellipse cx="135" cy="208" rx="16" ry="5" fill="#b8a888"/>
+        <ellipse cx="200" cy="211" rx="17" ry="5" fill="#c0b090"/>
+        <ellipse cx="255" cy="207" rx="14" ry="5" fill="#b8a888"/>
+        <!-- Lanterns hanging -->
+        <line x1="50" y1="0" x2="50" y2="28" stroke="#8b6040" stroke-width="1.5"/>
+        <ellipse cx="50" cy="30" rx="8" ry="10" fill="#f04040"/>
+        <line x1="140" y1="0" x2="140" y2="22" stroke="#8b6040" stroke-width="1.5"/>
+        <ellipse cx="140" cy="24" rx="7" ry="9" fill="#f0c030"/>
+        <line x1="230" y1="0" x2="230" y2="26" stroke="#8b6040" stroke-width="1.5"/>
+        <ellipse cx="230" cy="28" rx="7" ry="9" fill="#40a0f0"/>
+      </svg>
+    </div>
+    <div class="phil-tag-badge">Est. 1998</div>
+    <div class="phil-stat-badge">
+      <div class="big-num">98%</div>
+      <div class="sm-label">Client Return Rate</div>
+    </div>
+  </div>
+
+  <div class="phil-text reveal d2">
+    <p class="s-eyebrow">Our Philosophy</p>
+    <h2 class="s-title">Travel is not<br/>a <em>destination</em> —<br/>it's a becoming</h2>
+    <div class="quote-bar"></div>
+    <blockquote>"We don't sell holidays. We architect once-in-a-lifetime moments that reshape how you see the world — and yourself."</blockquote>
+    <p>Since 1998, Horizon has been quietly redefining what luxury travel means. Not threads and marble, but raw encounters: a Maasai elder sharing stories by firelight, the silence of a Moroccan desert at 3am, the particular light of Venice at dawn.</p>
+    <p>Our team of 60 destination specialists are themselves obsessive travellers. Every recommendation is earned through personal experience. We open doors that don't appear on maps.</p>
+    <a href="#" class="btn-gold" style="display:inline-block;margin-top:32px">Our Story →</a>
+  </div>
+</div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-bg" id="testimonials">
+<div class="testi-inner">
+  <div class="reveal" style="text-align:center">
+    <p class="s-eyebrow">Voices from the Road</p>
+    <h2 class="s-title">What our <em>travellers</em> say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+      </div>
+      <blockquote>"Our Maldives trip was flawless — not a single detail left to chance. We were met at the seaplane with champagne and a smile. Pure magic."</blockquote>
+      <div class="testi-author">
+        <div class="author-avatar">
+          <svg viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#c9a84c"/><circle cx="22" cy="18" r="9" fill="#f5e8c0"/><ellipse cx="22" cy="38" rx="15" ry="10" fill="#f5e8c0"/></svg>
+        </div>
+        <div>
+          <p class="author-name">Amara Osei-Bonsu</p>
+          <p class="author-trip">Maldives, June 2025</p>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d1">
+      <div class="stars">
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+      </div>
+      <blockquote>"Kyoto during cherry blossom season, private temple tours at dawn before the crowds — Horizon gave us access we couldn't have dreamed of booking alone."</blockquote>
+      <div class="testi-author">
+        <div class="author-avatar">
+          <svg viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#3a5f9e"/><circle cx="22" cy="18" r="9" fill="#dce8f8"/><ellipse cx="22" cy="38" rx="15" ry="10" fill="#dce8f8"/></svg>
+        </div>
+        <div>
+          <p class="author-name">Marcus & Elena Webb</p>
+          <p class="author-trip">Japan, April 2025</p>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="stars">
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+        <svg class="star" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.9 3.8 4.2.6-3 2.9.7 4.2L8 10.5l-3.8 2 .7-4.2-3-2.9 4.2-.6z"/></svg>
+      </div>
+      <blockquote>"The Serengeti camp was extraordinary. Watching the Great Migration with our private guide, then returning to a candlelit dinner in the wilderness — unforgettable."</blockquote>
+      <div class="testi-author">
+        <div class="author-avatar">
+          <svg viewBox="0 0 44 44" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#1a4a20"/><circle cx="22" cy="18" r="9" fill="#c0dd97"/><ellipse cx="22" cy="38" rx="15" ry="10" fill="#c0dd97"/></svg>
+        </div>
+        <div>
+          <p class="author-name">Chioma Adeyemi</p>
+          <p class="author-trip">Tanzania, August 2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-wrap" id="newsletter">
+  <div class="newsletter-inner reveal">
+    <p class="s-eyebrow" style="text-align:center;display:block">Stay Inspired</p>
+    <h2 class="s-title" style="color:var(--white);text-align:center">Journey ideas, <em>delivered</em></h2>
+    <p class="s-sub" style="text-align:center;margin:0 auto 40px;color:rgba(255,255,255,.5)">Insider destination guides, exclusive offers, and rare travel stories. No noise — only wonder.</p>
+    <div class="form-row">
+      <input class="nl-input" type="email" placeholder="Your email address"/>
+      <button class="nl-btn">Subscribe</button>
+    </div>
+    <p style="margin-top:16px;font-size:.76rem;color:rgba(255,255,255,.28);text-align:center">No spam, ever. Unsubscribe at any time.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">Hori<span>zon</span></a>
+        <p class="footer-desc">Crafting extraordinary journeys since 1998. Because the world is too magnificent to experience any other way.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="rgba(255,255,255,.6)" stroke="none"/></svg></a>
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.75l7.73-8.835L2.132 2.25H8.96l4.213 5.57L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="rgba(255,255,255,.6)"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="#">Europe</a></li>
+          <li><a href="#">Asia Pacific</a></li>
+          <li><a href="#">Americas</a></li>
+          <li><a href="#">Africa</a></li>
+          <li><a href="#">Middle East</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Experiences</h5>
+        <ul>
+          <li><a href="#">Private Charter</a></li>
+          <li><a href="#">Culinary Journeys</a></li>
+          <li><a href="#">Wildlife Safaris</a></li>
+          <li><a href="#">Wellness Retreats</a></li>
+          <li><a href="#">Cultural Immersion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Meet the Team</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Horizon Travel Ltd. All rights reserved.</p>
+      <div style="display:flex;gap:24px">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, {threshold: 0.1});
+reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
