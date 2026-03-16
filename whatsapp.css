@@ -347,5 +347,5 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   .nav-link { display: none; }
   .feat-grid { grid-template-columns: 1fr; }
   .big-card { flex-direction: column; text-align: center; }
-  .right-big { flex-direction: column; }
+  .right-big { flex-direction: column; 
 }
